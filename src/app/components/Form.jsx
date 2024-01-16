@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import ingredientList from "../../../ingredients.json";
 import { addRecipe } from "../data/recipe";
+import { RxCross1 } from "react-icons/rx";
 const Form = ({ onClose, onAdd }) => {
   const [name, setRecipeName] = useState("");
   const [price, setRecipePrice] = useState("");
@@ -49,7 +50,7 @@ const Form = ({ onClose, onAdd }) => {
     onClose();
   };
   return (
-    <div className="bg-white p-5 rounded">
+    <div className="bg-white p-5 rounded relative">
       <div className="text-center text-2xl text-[#426B1F] p-5">Add Recipe</div>
       <form onSubmit={handleSubmit} className="grid grid-cols-3 gap-2">
         <label>Recipe Name</label>
@@ -84,14 +85,14 @@ const Form = ({ onClose, onAdd }) => {
           </select>
           <ul className="px-2 flex flex-col gap-2 text-sm" required>
             {selectedIngredients.map((ingredient) => (
-              <li key={ingredient} className="border rounded w-fit px-2 flex gap-2">
+              <li key={ingredient} className="border rounded w-fit px-2 flex gap-2 items-center">
                 {ingredient}
-                <button onClick={() => handleRemoveIngredient(ingredient)}>x</button>
+                <RxCross1 onClick={() => handleRemoveIngredient(ingredient)}/>
               </li>
             ))}
           </ul>
         </div>
-        <label>Description</label>
+        <label>Instruction</label>
         <textarea
           className="col-span-2 border rounded"
           value={description}
@@ -106,12 +107,12 @@ const Form = ({ onClose, onAdd }) => {
           onChange={(e) => setImage(e.target.value)}
         />
 
-        <button type="submit" className="col-span-3">
+        <button type="submit" className="col-span-3 border rounded bg-[#426B1F] hover:bg-[#315016] text-white p-2">
           Submit
         </button>
       </form>
 
-      <button onClick={handleClose}>Close</button>
+      <button onClick={handleClose} className="m-2 px-2 border rounded absolute top-0 right-0 hover:bg-[#426B1F] hover:text-white">Close</button>
     </div>
   );
 };

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { updateRecipe } from "../data/recipe";
 import ingredientList from "../../../ingredients.json";
+import { RxCross1 } from "react-icons/rx";
 const Edit = ({
   title,
   price,
@@ -30,16 +31,6 @@ const Edit = ({
       (ingredient) => ingredient !== removedIngredient
     );
     setSelectedIngredients(updatedIngredients);
-  };
-  const handleSave = () => {
-    updateRecipe(title, {
-      name: editTitle,
-      price: editPrice,
-      description: editDescription,
-      selectedIngredients: selectedIngredients,
-    });
-    onUpdate();
-    setIsEdit(false);
   };
   useEffect(() => {
     setEditTitle(title);
@@ -95,9 +86,9 @@ const Edit = ({
                   className="border rounded w-fit px-2 flex gap-2"
                 >
                   {ingredient}
-                  <button onClick={() => handleRemoveIngredient(ingredient)}>
-                    x
-                  </button>
+                  <RxCross1
+                    onClick={() => handleRemoveIngredient(ingredient)}
+                  />
                 </li>
               ))}
             </ul>
@@ -110,14 +101,17 @@ const Edit = ({
           />
 
           <button
+            type="submit"
+            className="col-span-3 border rounded hover:bg-[#315016] hover:text-white"
+          >
+            Save
+          </button>
+          <button
             type="button"
-            onClick={handleEdit}
-            className="col-span-3 border rounded"
+            onClick={() => setIsEdit(false)}
+            className="col-span-3 border rounded hover:bg-[#315016] hover:text-white"
           >
             Cancel
-          </button>
-          <button type="submit" className="col-span-3 border rounded">
-            Save
           </button>
         </form>
       </div>
