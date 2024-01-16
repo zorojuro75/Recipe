@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { deleteRecipe } from "../data/recipe";
 import Edit from "./Edit";
+import Image from "next/image";
 const Card = ({
   title,
   price,
@@ -22,10 +23,12 @@ const Card = ({
   return (
     <>
       <div className="h-[180px] w-[800px] bg-[#FAFAF5] rounded-[16px] flex">
-        <img
+        <Image
           src={image}
+          height={180}
+          width={180}
           alt="No Images found"
-          className="h-full w-[180px] rounded-l-[16px]"
+          className="h-full w-[180px] rounded-l-[16px] overflow-clip"
         />
         <div className="p-[24px] flex justify-between flex-1">
           <div>
