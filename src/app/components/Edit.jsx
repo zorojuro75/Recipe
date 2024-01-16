@@ -32,6 +32,16 @@ const Edit = ({
     );
     setSelectedIngredients(updatedIngredients);
   };
+  const handleSave = () => {
+    updateRecipe(title, {
+      name: editTitle,
+      price: editPrice,
+      description: editDescription,
+      selectedIngredients: selectedIngredients,
+    });
+    onUpdate();
+    setIsEdit(false);
+  };
   useEffect(() => {
     setEditTitle(title);
     setEditPrice(price);
